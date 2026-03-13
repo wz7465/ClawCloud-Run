@@ -2,9 +2,11 @@ name: ClawCloud Auto Login
 
 on:
   schedule:
-    # 每 15 天运行一次（UTC 时间）
     - cron: "0 0 */15 * *"
-  workflow_dispatch:  # 支持手动触发
+  workflow_dispatch:
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   run-auto-login:
@@ -35,4 +37,4 @@ jobs:
           REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
           GH_SESSION: ${{ secrets.GH_SESSION }}
         run: |
-          python auto_login.py
+          python scripts/auto_login.py
