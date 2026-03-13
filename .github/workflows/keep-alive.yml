@@ -1,37 +1,38 @@
-name: ClawCloud 自动登录保活
+name: ClawCloud Auto Login
 
 on:
   schedule:
-    - cron: '0 3 */3 * *'  # UTC 3:00，每5天运行
-  workflow_dispatch:
+    # 每 15 天运行一次（UTC 时间）
+    - cron: "0 0 */15 * *"
+  workflow_dispatch:  # 支持手动触发
 
 jobs:
-  auto-login:
+  run-auto-login:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
-    
+
     steps:
-      - name: 检出代码
+      - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: 设置 Python
+      - name: Set up Python 3.11
         uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: "3.11"
 
-      - name: 安装依赖
+      - name: Install dependencies
         run: |
-          pip install playwright requests pynacl
+          python -m pip install --upgrade pip
+          pip install playwright pyotp requests pynacl
           playwright install chromium
-          playwright install-deps
 
-      - name: 运行自动登录
+      - name: Run ClawCloud Auto Login
         env:
           GH_USERNAME: ${{ secrets.GH_USERNAME }}
           GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
-          GH_SESSION: ${{ secrets.GH_SESSION }}
+          GH_2FA_SECRET: ${{ secrets.GH_2FA_SECRET }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
           REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-          
-        run: python scripts/auto_login.py
+          GH_SESSION: ${{ secrets.GH_SESSION }}
+        run: |
+          python auto_login.py
