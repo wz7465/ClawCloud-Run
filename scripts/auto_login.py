@@ -333,7 +333,7 @@ class AutoLogin:
             time.sleep(2)
             page.wait_for_load_state("networkidle", timeout=30000)
 
-    def bypass_passkey(self, page):
+def bypass_passkey(self, page):
     """自动跳过 GitHub Passkey 登录界面"""
     self.log("检查是否出现 Passkey 页面", "INFO")
 
