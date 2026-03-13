@@ -332,32 +332,32 @@ class AutoLogin:
                 return False
             time.sleep(2)
             page.wait_for_load_state("networkidle", timeout=30000)
-            
+
     def bypass_passkey(self, page):
-    """自动跳过 GitHub Passkey 登录界面"""
-    self.log("检测是否为 Passkey 页面", "INFO")
-
-    selectors = [
-        'button:has-text("Use a different verification method")',
-        'button:has-text("Try another way")',
-        'a:has-text("Use a different verification method")',
-        'a:has-text("Try another way")'
-    ]
-
-    for sel in selectors:
-        try:
-            el = page.locator(sel).first
-            if el.is_visible(timeout=2000):
-                self.log("检测到 Passkey 页面，正在跳过", "WARN")
-                el.click()
-                time.sleep(2)
-                page.waitforload_state("networkidle", timeout=30000)
-                self.shot(page, "bypass_passkey")
-                return True
-        except:
-            pass
-
-    return False
+        """自动跳过 GitHub Passkey 登录界面"""
+        self.log("检测是否为 Passkey 页面", "INFO")
+    
+        selectors = [
+            'button:has-text("Use a different verification method")',
+            'button:has-text("Try another way")',
+            'a:has-text("Use a different verification method")',
+            'a:has-text("Try another way")'
+        ]
+    
+        for sel in selectors:
+            try:
+                el = page.locator(sel).first
+                if el.is_visible(timeout=2000):
+                    self.log("检测到 Passkey 页面，正在跳过", "WARN")
+                    el.click()
+                    time.sleep(2)
+                    page.waitforload_state("networkidle", timeout=30000)
+                    self.shot(page, "bypass_passkey")
+                    return True
+            except:
+                pass
+    
+        return False
          
         # 先尝试跳过 Passkey
         self.bypass_passkey(page)
