@@ -333,39 +333,39 @@ class AutoLogin:
             time.sleep(2)
             page.wait_for_load_state("networkidle", timeout=30000)
 
-def bypass_passkey(self, page):
-    """自动跳过 GitHub Passkey 登录界面"""
-    self.log("检查是否出现 Passkey 页面", "INFO")
-
-    selectors = [
-        'button:has-text("Try another way")',
-        'button:has-text("Use a different verification method")',
-        'button:has-text("Use your password")',
-        'button:has-text("Use your password instead")',
-        'button:has-text("Use authenticator app")',
-        'button:has-text("I don\'t have my passkey")',
-        'a:has-text("Try another way")',
-        'a:has-text("Use a different verification method")',
-        'a:has-text("Use your password")',
-        'a:has-text("Use your password instead")',
-        'a:has-text("Use authenticator app")',
-        'a:has-text("I don\'t have my passkey")',
-    ]
-
-    for sel in selectors:
-        try:
-            el = page.locator(sel).first
-            if el.is_visible(timeout=1500):
-                self.log(f"检测到 Passkey 页面，点击按钮: {sel}", "WARN")
-                el.click()
-                time.sleep(2)
-                page.wait_for_load_state("networkidle", timeout=30000)
-                self.shot(page, "bypass_passkey")
-                return True
-        except:
-            pass
-
-    return False
+    def bypass_passkey(self, page):
+        """自动跳过 GitHub Passkey 登录界面"""
+        self.log("检查是否出现 Passkey 页面", "INFO")
+    
+        selectors = [
+            'button:has-text("Try another way")',
+            'button:has-text("Use a different verification method")',
+            'button:has-text("Use your password")',
+            'button:has-text("Use your password instead")',
+            'button:has-text("Use authenticator app")',
+            'button:has-text("I don\'t have my passkey")',
+            'a:has-text("Try another way")',
+            'a:has-text("Use a different verification method")',
+            'a:has-text("Use your password")',
+            'a:has-text("Use your password instead")',
+            'a:has-text("Use authenticator app")',
+            'a:has-text("I don\'t have my passkey")',
+        ]
+    
+        for sel in selectors:
+            try:
+                el = page.locator(sel).first
+                if el.is_visible(timeout=1500):
+                    self.log(f"检测到 Passkey 页面，点击按钮: {sel}", "WARN")
+                    el.click()
+                    time.sleep(2)
+                    page.wait_for_load_state("networkidle", timeout=30000)
+                    self.shot(page, "bypass_passkey")
+                    return True
+            except:
+                pass
+    
+        return False
          
         # 先尝试跳过 Passkey
         self.bypass_passkey(page)
