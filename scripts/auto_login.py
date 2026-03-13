@@ -334,36 +334,45 @@ class AutoLogin:
             page.wait_for_load_state("networkidle", timeout=30000)
 
     def bypass_passkey(self, page):
-        """自动跳过 GitHub Passkey 登录界面"""
+        """自动跳过 GitHub 新版 Passkey 页面"""
         self.log("检查是否出现 Passkey 页面", "INFO")
     
-        selectors = [
-            'button:has-text("Try another way")',
-            'button:has-text("Use a different verification method")',
-            'button:has-text("Use your password")',
-            'button:has-text("Use your password instead")',
-            'button:has-text("Use authenticator app")',
-            'button:has-text("I don\'t have my passkey")',
-            'a:has-text("Try another way")',
-            'a:has-text("Use a different verification method")',
-            'a:has-text("Use your password")',
-            'a:has-text("Use your password instead")',
-            'a:has-text("Use authenticator app")',
-            'a:has-text("I don\'t have my passkey")',
-        ]
+        try:
+            # Step 1: 检查是否出现 More options ▼
+            more_btn = page.locator('button:has-text("More options")').first
+            if more_btn.is_visible(timeout=2000):
+                self.log("检测到 Passkey 页面：点击 More options ▼", "WARN")
+                more_btn.click()
+                time.sleep(1)
     
-        for sel in selectors:
-            try:
-                el = page.locator(sel).first
-                if el.is_visible(timeout=1500):
-                    self.log(f"检测到 Passkey 页面，点击按钮: {sel}", "WARN")
-                    el.click()
+                # Step 2: 点击 Use authenticator app
+                auth_btn = page.locator('button:has-text("Use authenticator app")').first
+                if auth_btn.is_visible(timeout=3000):
+                    self.log("选择：Use authenticator app", "WARN")
+                    auth_btn.click()
                     time.sleep(2)
                     page.wait_for_load_state("networkidle", timeout=30000)
-                    self.shot(page, "bypass_passkey")
+                    self.shot(page, "bypass_passkey_new")
                     return True
-            except:
-                pass
+    
+                # 如果菜单里没有 authenticator app，尝试其他选项
+                fallback_btns = [
+                    'button:has-text("Use your password")',
+                    'button:has-text("Use a different verification method")',
+                    'button:has-text("Try another way")',
+                ]
+                for sel in fallback_btns:
+                    btn = page.locator(sel).first
+                    if btn.is_visible(timeout=1500):
+                        self.log(f"选择备用选项：{sel}", "WARN")
+                        btn.click()
+                        time.sleep(2)
+                        page.wait_for_load_state("networkidle", timeout=30000)
+                        self.shot(page, "bypass_passkey_fallback")
+                        return True
+    
+        except Exception as e:
+            self.log(f"bypass_passkey 异常: {e}", "ERROR")
     
         return False
          
