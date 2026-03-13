@@ -20,7 +20,7 @@ from playwright.sync_api import sync_playwright
 # -----------------------------
 # 配置
 # -----------------------------
-LOGIN_ENTRY_URL = "https://console.run.claw.cloud"
+LOGIN_ENTRY_URL = "https://console.run.claw.cloud/login"
 SIGNIN_URL = f"{LOGIN_ENTRY_URL}/signin"
 
 DEVICE_VERIFY_WAIT = 30
