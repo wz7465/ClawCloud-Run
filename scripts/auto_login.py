@@ -301,62 +301,36 @@ class AutoLogin:
     # GitHub 登录（核心逻辑）
     # ============================================================
     def try_bypass_passkey(self, page):
-        """参考 frankiejun 逻辑的 Passkey 跳过"""
-        try:
-            # 检查是否出现 Passkey 页面
-            content = page.content()
-            if ("passkey" in content.lower() or 
-                "webauthn" in content.lower() or
-                "Use passkey" in content or
-                "More options" in content):
-    
-                self.log("检测到 GitHub Passkey 页面", "WARN")
-    
-                # Step 1: 点击 More options
-                more = page.locator('button:has-text("More options")').first
-                if more.is_visible(timeout=2000):
-                    self.log("点击 More options ▼", "WARN")
-                    more.click()
-                    time.sleep(1)
-    
-                # Step 2: 点击 Use authenticator app
-                auth = page.locator('button:has-text("Use authenticator app")').first
-                if auth.is_visible(timeout=2000):
-                    self.log("选择 Use authenticator app", "WARN")
-                    auth.click()
-                    time.sleep(2)
-                    return True
-    
-                # Step 3: fallback
-                fallback = [
-                    'button:has-text("Use your password")',
-                    'button:has-text("Try another way")',
-                    'button:has-text("Use a different verification method")'
-                ]
-                for sel in fallback:
-                    btn = page.locator(sel).first
-                    if btn.is_visible(timeout=1500):
-                        self.log(f"选择备用选项：{sel}", "WARN")
-                        btn.click()
-                        time.sleep(2)
-                        return True
-    
-        except Exception as e:
-            self.log(f"Passkey 跳过异常: {e}", "ERROR")
-    
-        return False
-    def login_github(self, page, context):
-        self.log("开始 GitHub 登录流程", "STEP")
-        self.shot(page, "github_login_page")
 
-        # 输入用户名密码
-        try:
-            page.locator('input[name="login"]').fill(self.username)
-            page.locator('input[name="password"]').fill(self.password)
-            self.log("已输入 GitHub 凭据", "SUCCESS")
-        except Exception as e:
-            self.log(f"输入凭据失败: {e}", "ERROR")
+    try:
+
+        if "passkey" not in page.content().lower():
             return False
+
+        self.log("检测到 Passkey 页面", "WARN")
+
+        selectors = [
+
+            'button:has-text("More options")',
+            'button:has-text("Try another way")',
+            'button:has-text("Use authenticator app")',
+            'button:has-text("Use your password")'
+
+        ]
+
+        for sel in selectors:
+
+            btn = page.locator(sel).first
+
+            if btn.is_visible(timeout=2000):
+
+                btn.click()
+                time.sleep(2)
+
+        return True
+
+    except:
+        return False
 
         self.shot(page, "github_credentials_filled")
 
