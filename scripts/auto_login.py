@@ -371,7 +371,7 @@ class AutoLogin:
         self.shot(page, "github_after_submit")
 
         # 先尝试跳过 Passkey
-        self.trybypasspasskey(page)  
+        self.try_bypass_passkey(page)  
         
         # 设备验证
         if "verified-device" in page.url or "device-verification" in page.url:
