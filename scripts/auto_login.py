@@ -341,7 +341,7 @@ class AutoLogin:
             pass
 
         time.sleep(2)
-        page.wait_for_load_state("networkidle", timeout=30000)
+        page.wait_for_timeout(3000)
         self.shot(page, "github_after_submit")
 
         # 先尝试跳过 Passkey
@@ -352,7 +352,7 @@ class AutoLogin:
             if not self.wait_device(page):
                 return False
             time.sleep(2)
-            page.wait_for_load_state("networkidle", timeout=30000)
+            page.wait_for_timeout(3000)
 
 
          
@@ -372,14 +372,14 @@ class AutoLogin:
                 if not self.wait_two_factor_mobile(page):
                     return False
                 time.sleep(2)
-                page.wait_for_load_state("networkidle", timeout=30000)
+                page.wait_for_timeout(3000)
 
             else:
                 # TOTP / 恢复码
                 if not self.handle_2fa_code_input(page):
                     return False
                 time.sleep(2)
-                page.wait_for_load_state("networkidle", timeout=30000)
+                page.wait_for_timeout(3000)
 
         # 检查错误
         try:
