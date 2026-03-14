@@ -479,51 +479,44 @@ class AutoLogin:
     # 提交 OTP（自动识别输入框 + 自动提交）
     # -----------------------------
     def _submit_otp(self, page, code):
-        selectors = [
-            'input[autocomplete="one-time-code"]',
-            'input[name="app_otp"]',
-            'input[name="otp"]',
-            'input#app_totp',
-            'input#otp',
-            'input[inputmode="numeric"]'
-        ]
 
-        for sel in selectors:
-            try:
-                el = page.locator(sel).first
-                if el.is_visible(timeout=2000):
-                    el.fill(code)
-                    time.sleep(1)
+    selectors = [
 
-                    # 点击 Verify
-                    verify_btns = [
-                        'button:has-text("Verify")',
-                        'button[type="submit"]',
-                        'input[type="submit"]'
-                    ]
-                    submitted = False
+        'input[data-target="two-factor-authentication.totpCode"]',
+        'input[autocomplete="one-time-code"]',
+        'input[name="app_otp"]',
+        'input[name="otp"]',
+        'input#app_totp',
+        'input#otp',
+        'input[inputmode="numeric"]'
 
-                    for btn_sel in verify_btns:
-                        try:
-                            btn = page.locator(btn_sel).first
-                            if btn.is_visible(timeout=1000):
-                                btn.click()
-                                submitted = True
-                                break
-                        except:
-                            pass
+    ]
 
-                    if not submitted:
-                        page.keyboard.press("Enter")
+    for sel in selectors:
 
-                    time.sleep(3)
-                    page.wait_for_load_state("networkidle", timeout=30000)
-                    self.shot(page, "otp_submitted")
+        try:
 
-                    # 判断是否通过
-                    if "github.com/sessions/two-factor/" not in page.url:
-                        return True
-                    return False
+            el = page.locator(sel).first
+
+            if el.is_visible(timeout=3000):
+
+                el.fill(code)
+
+                time.sleep(1)
+
+                page.keyboard.press("Enter")
+
+                page.wait_for_timeout(4000)
+
+                url = page.url
+
+                if "two-factor" not in url:
+                    return True
+
+        except:
+            pass
+
+    return False
 
             except:
                 pass
