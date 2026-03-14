@@ -516,7 +516,7 @@ class AutoLogin:
             )
 
             time.sleep(2)
-            page.wait_for_load_state("networkidle", timeout=30000)
+            page.wait_for_timeout(3000)
 
     # ============================================================
     # 等待重定向到 ClawCloud（并自动检测区域）
@@ -563,7 +563,7 @@ class AutoLogin:
         for url, name in pages:
             try:
                 page.goto(url, timeout=30000)
-                page.wait_for_load_state("networkidle", timeout=15000)
+                page.wait_for_timeout(3000)
                 self.log(f"已访问: {name}", "SUCCESS")
 
                 # 再次检测区域（以防跳转）
@@ -666,7 +666,7 @@ class AutoLogin:
                 # Step 1: 打开 ClawCloud 登录页
                 self.log("步骤 1：打开 ClawCloud 登录页", "STEP")
                 page.goto(SIGNIN_URL, timeout=60000)
-                page.wait_for_load_state("networkidle", timeout=60000)
+                page.wait_for_timeout(3000)
                 time.sleep(1)
                 self.shot(page, "clawcloud_login_page")
 
@@ -686,7 +686,7 @@ class AutoLogin:
                     return
 
                 time.sleep(2)
-                page.wait_for_load_state("networkidle", timeout=60000)
+                page.wait_for_timeout(3000)
                 self.shot(page, "after_click_github")
 
                 # 如果已经登录（直接跳转）
