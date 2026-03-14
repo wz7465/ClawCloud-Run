@@ -632,9 +632,12 @@ class AutoLogin:
 
         with sync_playwright() as p:
             browser = p.chromium.launch(
-                headless=True,
-                args=["--no-sandbox"]
-            )
+    headless=True,
+    args=[
+        "--no-sandbox",
+        "--disable-blink-features=AutomationControlled"
+    ]
+)
             context = browser.new_context(
                 viewport={"width": 1920, "height": 1080},
                 user_agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
