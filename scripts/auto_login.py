@@ -300,39 +300,6 @@ class AutoLogin:
 # ============================================================
     # GitHub 登录（核心逻辑）
     # ============================================================
-
-    def login_github(self, page, context):
-        self.log("开始 GitHub 登录流程", "STEP")
-        self.shot(page, "github_login_page")
-
-        # 输入用户名密码
-        try:
-            page.locator('input[name="login"]').fill(self.username)
-            page.locator('input[name="password"]').fill(self.password)
-            self.log("已输入 GitHub 凭据", "SUCCESS")
-        except Exception as e:
-            self.log(f"输入凭据失败: {e}", "ERROR")
-            return False
-
-        self.shot(page, "github_credentials_filled")
-
-        # 点击登录
-        try:
-            page.locator('input[type="submit"], button[type="submit"]').first.click()
-        except:
-            pass
-
-        time.sleep(2)
-        page.wait_for_load_state("networkidle", timeout=30000)
-        self.shot(page, "github_after_submit")
-
-        # 设备验证
-        if "verified-device" in page.url or "device-verification" in page.url:
-            if not self.wait_device(page):
-                return False
-            time.sleep(2)
-            page.wait_for_load_state("networkidle", timeout=30000)
-
     def try_bypass_passkey(self, page):
         """参考 frankiejun 逻辑的 Passkey 跳过"""
         try:
@@ -378,9 +345,44 @@ class AutoLogin:
             self.log(f"Passkey 跳过异常: {e}", "ERROR")
     
         return False
-         
+    def login_github(self, page, context):
+        self.log("开始 GitHub 登录流程", "STEP")
+        self.shot(page, "github_login_page")
+
+        # 输入用户名密码
+        try:
+            page.locator('input[name="login"]').fill(self.username)
+            page.locator('input[name="password"]').fill(self.password)
+            self.log("已输入 GitHub 凭据", "SUCCESS")
+        except Exception as e:
+            self.log(f"输入凭据失败: {e}", "ERROR")
+            return False
+
+        self.shot(page, "github_credentials_filled")
+
+        # 点击登录
+        try:
+            page.locator('input[type="submit"], button[type="submit"]').first.click()
+        except:
+            pass
+
+        time.sleep(2)
+        page.wait_for_load_state("networkidle", timeout=30000)
+        self.shot(page, "github_after_submit")
+
         # 先尝试跳过 Passkey
-        self.bypass_passkey(page)
+        self.trybypasspasskey(page)  
+        
+        # 设备验证
+        if "verified-device" in page.url or "device-verification" in page.url:
+            if not self.wait_device(page):
+                return False
+            time.sleep(2)
+            page.wait_for_load_state("networkidle", timeout=30000)
+
+
+         
+        
          
         # 两步验证
         if "two-factor" in page.url:
