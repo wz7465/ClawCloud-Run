@@ -385,7 +385,11 @@ class AutoLogin:
         
          
         # 两步验证
-        if "two-factor" in page.url:
+        if (
+    "two-factor" in page.url
+    or "sessions/two-factor" in page.url
+    or "device-verification" in page.url
+):
             self.log("检测到 GitHub 两步验证", "WARN")
             self.shot(page, "github_2fa")
 
