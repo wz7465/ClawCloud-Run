@@ -420,64 +420,60 @@ class AutoLogin:
     # ============================================================
 
     def handle_2fa_code_input(self, page):
-        """自动 TOTP（GH_2FA_SECRET）→ fallback Telegram"""
 
-        self.log("需要输入 GitHub TOTP 验证码", "WARN")
-        shot = self.shot(page, "github_2fa_code")
+    self.log("需要输入 GitHub TOTP 验证码", "WARN")
 
-        # -----------------------------
-        # 自动 TOTP（优先）
-        # -----------------------------
-        secret = os.environ.get("GH_2FA_SECRET")
+    shot = self.shot(page, "github_2fa_code")
 
-        if secret:
-            try:
-                totp = pyotp.TOTP(secret.replace(" ", ""))
-                otp_code = totp.now()
-                self.log(f"自动生成 TOTP: {otp_code}", "SUCCESS")
+    secret = os.environ.get("GH_2FA_SECRET")
 
-                if self._submit_otp(page, otp_code):
-                    self.log("自动 TOTP 验证成功", "SUCCESS")
-                    self.tg.send("🔐 自动 TOTP 验证成功")
+    if secret:
+        try:
+
+            secret = secret.replace(" ", "").strip()
+
+            totp = pyotp.TOTP(secret)
+
+            for i in range(3):
+
+                code = totp.now()
+
+                self.log(f"生成 TOTP: {code}", "INFO")
+
+                if self._submit_otp(page, code):
+
+                    self.log("TOTP 验证成功", "SUCCESS")
                     return True
 
-                self.log("自动 TOTP 验证失败，切换 Telegram", "WARN")
+                self.log("TOTP 失败，重试", "WARN")
 
-            except Exception as e:
-                self.log(f"TOTP 计算失败: {e}", "ERROR")
+                time.sleep(5)
 
-        else:
-            self.log("未配置 GH_2FA_SECRET，无法自动 TOTP", "WARN")
+        except Exception as e:
 
-        # -----------------------------
-        # fallback：Telegram 输入验证码
-        # -----------------------------
-        self.tg.send(
-            f"🔐 <b>需要验证码登录</b>\n\n"
-            f"请发送：<code>/code 123456</code>\n"
-            f"等待 {TWO_FACTOR_WAIT} 秒"
-        )
-        if shot:
-            self.tg.photo(shot, "两步验证页面")
+            self.log(f"TOTP 计算失败: {e}", "ERROR")
 
-        code = self.tg.wait_code(timeout=TWO_FACTOR_WAIT)
+    self.log("自动 TOTP 失败，等待 Telegram", "WARN")
 
-        if not code:
-            self.log("等待 Telegram 验证码超时", "ERROR")
-            self.tg.send("❌ 验证码超时")
-            return False
+    self.tg.send(
+        f"🔐 需要验证码\n发送:\n/code 123456\n等待 {TWO_FACTOR_WAIT} 秒"
+    )
 
-        self.log("收到 Telegram 验证码，正在提交", "SUCCESS")
-        self.tg.send("🔐 正在提交验证码")
+    if shot:
+        self.tg.photo(shot)
 
-        if self._submit_otp(page, code):
-            self.log("Telegram 验证码验证成功", "SUCCESS")
-            self.tg.send("✅ 验证成功")
-            return True
+    code = self.tg.wait_code(timeout=TWO_FACTOR_WAIT)
 
-        self.log("验证码错误", "ERROR")
-        self.tg.send("❌ 验证码错误")
+    if not code:
+        self.log("等待验证码超时", "ERROR")
         return False
+
+    if self._submit_otp(page, code):
+
+        self.log("Telegram 验证成功", "SUCCESS")
+        return True
+
+    return False
 
     # -----------------------------
     # 提交 OTP（自动识别输入框 + 自动提交）
