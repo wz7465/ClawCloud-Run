@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "renew",
     "main": "renew.js",
+    "type": "module",
     "scripts": {
         "start": "node renew.js"
     }
