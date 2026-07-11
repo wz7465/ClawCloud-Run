@@ -3,18 +3,18 @@
     "name": "lunes",
     "url": "https://betadash.lunes.host/login",
     "intervalDays": 15,
-    "lastLogin": 0
+    "lastLogin": 1783728000
   },
   {
     "name": "wispbyte",
     "url": "https://wispbyte.com/client",
     "intervalDays": 30,
-    "lastLogin": 0
+    "lastLogin": 1783728000
   },
   {
     "name": "bot-hosting",
     "url": "https://legacy.bot-hosting.net/login",
     "intervalDays": 7,
-    "lastLogin": 0
+    "lastLogin": 1783728000
   }
 ]
