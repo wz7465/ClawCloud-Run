@@ -41,7 +41,7 @@ async function sendTelegramMessage(text) {
     if (now >= due) {
       console.log(`${site.name} 到达登录时间`);
 
-      const ok = await sendTelegramMessage(`登录：${site.url}`);
+      const ok = await sendTelegramMessage(`续期登录：${site.url}`);
 
       if (ok) {
         console.log(`${site.name} 登录任务已发送`);
