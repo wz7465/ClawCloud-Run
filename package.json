@@ -1,0 +1,9 @@
+{
+    "name": "renew",
+    "version": "1.0.0",
+    "description": "renew",
+    "main": "renew.js",
+    "scripts": {
+        "start": "node renew.js"
+    }
+}
