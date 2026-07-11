@@ -19,6 +19,7 @@ function getTodayZeroUTC() {
   return Math.floor(utc / 1000);
 }
 
+const now = Math.floor(Date.now() / 1000);
 const todayZero = getTodayZeroUTC();
 const oneDay = 86400;
 
