@@ -1,40 +1,29 @@
-name: ClawCloud Auto Login
+name: Multi-Site Login
 
 on:
   schedule:
-    - cron: "0 0 */15 * *"
+    - cron: "0 0 * * *"   # 每天执行一次
   workflow_dispatch:
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
-  run-auto-login:
+  run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
+      - uses: actions/setup-node@v3
         with:
-          python-version: "3.11"
+          node-version: 18
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install playwright pyotp requests pynacl
-          playwright install chromium
+      - run: npm install
 
-      - name: Run ClawCloud Auto Login
+      - name: Run renew script
         env:
-          GH_USERNAME: ${{ secrets.GH_USERNAME }}
-          GH_PASSWORD: ${{ secrets.GH_PASSWORD }}
-          GH_2FA_SECRET: ${{ secrets.GH_2FA_SECRET }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
-          REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
-          GH_SESSION: ${{ secrets.GH_SESSION }}
-        run: |
-          python scripts/auto_login.py
+        run: node renew.js
+
+      - name: Save updated sites.json
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update sites.json login timestamps"
