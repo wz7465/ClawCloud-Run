@@ -36,6 +36,12 @@
     "lastLogin": 1785110400
   },
   {
+    "name": "pidginhost",
+    "url": "https://www.pidginhost.com/panel/cloud/servers/4211/",
+    "intervalDays": 14,
+    "lastLogin": 0
+  },
+  {
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
