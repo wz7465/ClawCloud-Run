@@ -42,6 +42,18 @@
     "lastLogin": 1785974400
   },
   {
+    "name": "puratya",
+    "url": "https://cloud.puratya.com/",
+    "intervalDays": 6,
+    "lastLogin": 0
+  },
+  {
+    "name": "kerit",
+    "url": "https://billing.kerit.cloud/free_panel",
+    "intervalDays": 6,
+    "lastLogin": 0
+  },
+  {
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
