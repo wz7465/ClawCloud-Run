@@ -45,13 +45,13 @@
     "name": "puratya",
     "url": "https://cloud.puratya.com/",
     "intervalDays": 6,
-    "lastLogin": 0
+    "lastLogin": 1786579200
   },
   {
     "name": "kerit",
     "url": "https://billing.kerit.cloud/free_panel",
     "intervalDays": 6,
-    "lastLogin": 0
+    "lastLogin": 1786579200
   },
   {
     "name": "hidencloud",
