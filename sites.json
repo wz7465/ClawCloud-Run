@@ -3,7 +3,7 @@
     "name": "lunes",
     "url": "https://betadash.lunes.host/login",
     "intervalDays": 7,
-    "lastLogin": 1787961600
+    "lastLogin": 1788566400
   },
   {
     "name": "wispbyte",
@@ -15,7 +15,7 @@
     "name": "bot-hosting",
     "url": "https://legacy.bot-hosting.net/login",
     "intervalDays": 7,
-    "lastLogin": 1787961600
+    "lastLogin": 1788566400
   },
   {
     "name": "serv00",
@@ -57,7 +57,7 @@
     "name": "aclclouds",
     "url": "https://aclclouds.com/dashboard/projects4",
     "intervalDays": 4,
-    "lastLogin": 1788220800
+    "lastLogin": 1788566400
   },
   {
     "name": "hidencloud",
