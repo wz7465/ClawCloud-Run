@@ -45,13 +45,13 @@
     "name": "puratya",
     "url": "https://cloud.puratya.com/",
     "intervalDays": 6,
-    "lastLogin": 1788134400
+    "lastLogin": 1788652800
   },
   {
     "name": "kerit",
     "url": "https://billing.kerit.cloud/free_panel",
     "intervalDays": 6,
-    "lastLogin": 1788134400
+    "lastLogin": 1788652800
   },
   {
     "name": "aclclouds",
@@ -63,6 +63,6 @@
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
-    "lastLogin": 1788048000
+    "lastLogin": 1788652800
   }
 ]
