@@ -57,12 +57,12 @@
     "name": "aclclouds",
     "url": "https://aclclouds.com/dashboard/projects4",
     "intervalDays": 4,
-    "lastLogin": 1788912000
+    "lastLogin": 1789257600
   },
   {
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
-    "lastLogin": 1788652800
+    "lastLogin": 1789257600
   }
 ]
