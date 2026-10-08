@@ -13,9 +13,9 @@
   },
   {
     "name": "bot-hosting",
-    "url": "https://legacy.bot-hosting.net/login",
-    "intervalDays": 7,
-    "lastLogin": 1790985600
+    "url": "https://bot-hosting.net/a/billings",
+    "intervalDays": 4,
+    "lastLogin": 0
   },
   {
     "name": "serv00",
