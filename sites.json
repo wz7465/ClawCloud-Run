@@ -9,13 +9,13 @@
     "name": "wispbyte",
     "url": "https://wispbyte.com/client",
     "intervalDays": 30,
-    "lastLogin": 1788912000
+    "lastLogin": 1791504000
   },
   {
     "name": "bot-hosting",
     "url": "https://bot-hosting.net/a/billings",
     "intervalDays": 4,
-    "lastLogin": 0
+    "lastLogin": 1791504000
   },
   {
     "name": "serv00",
