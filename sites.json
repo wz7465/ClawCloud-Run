@@ -3,7 +3,7 @@
     "name": "lunes",
     "url": "https://betadash.lunes.host/login",
     "intervalDays": 7,
-    "lastLogin": 1790985600
+    "lastLogin": 1791590400
   },
   {
     "name": "wispbyte",
@@ -21,19 +21,19 @@
     "name": "serv00",
     "url": "https://panel2.serv00.com/login/?next=/",
     "intervalDays": 15,
-    "lastLogin": 1790294400
+    "lastLogin": 1791590400
   },
   {
     "name": "cpanelfree",
     "url": "https://cpanel.cpanelfree.com/index.php",
     "intervalDays": 15,
-    "lastLogin": 1790294400
+    "lastLogin": 1791590400
   },
   {
     "name": "x10hosting",
     "url": "https://x10hosting.com/login",
     "intervalDays": 15,
-    "lastLogin": 1790294400
+    "lastLogin": 1791590400
   },
   {
     "name": "pidginhost",
