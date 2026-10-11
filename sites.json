@@ -64,5 +64,11 @@
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
     "lastLogin": 1791072000
-  }
+  }，
+  {
+    "name": "hostlio",
+    "url": "https://www.hostlio.fr/dashboard/services/f15ba91c-e548-4904-9377-c8c84838af5b",
+    "intervalDays": 29,
+    "lastLogin": 0
+  }  
 ]
