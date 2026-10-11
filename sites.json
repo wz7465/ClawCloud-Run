@@ -57,18 +57,18 @@
     "name": "aclclouds",
     "url": "https://aclclouds.com/dashboard/projects4",
     "intervalDays": 4,
-    "lastLogin": 1791331200
+    "lastLogin": 1791676800
   },
   {
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
-    "lastLogin": 1791072000
+    "lastLogin": 1791676800
   },
   {
     "name": "hostlio",
     "url": "https://www.hostlio.fr/dashboard/services/f15ba91c-e548-4904-9377-c8c84838af5b",
     "intervalDays": 29,
-    "lastLogin": 0
-  }  
+    "lastLogin": 1791676800
+  }
 ]
