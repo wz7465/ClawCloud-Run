@@ -3,7 +3,7 @@
     "name": "lunes",
     "url": "https://betadash.lunes.host/login",
     "intervalDays": 7,
-    "lastLogin": 1792195200
+    "lastLogin": 1792800000
   },
   {
     "name": "wispbyte",
@@ -45,13 +45,13 @@
     "name": "puratya",
     "url": "https://cloud.m-ws.cc/",
     "intervalDays": 6,
-    "lastLogin": 1792281600
+    "lastLogin": 1792800000
   },
   {
     "name": "kerit",
     "url": "https://billing.kerit.cloud/free_panel",
     "intervalDays": 6,
-    "lastLogin": 1792281600
+    "lastLogin": 1792800000
   },
   {
     "name": "aclclouds",
