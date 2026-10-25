@@ -15,25 +15,25 @@
     "name": "bot-hosting",
     "url": "https://bot-hosting.net/a/billings",
     "intervalDays": 4,
-    "lastLogin": 1792540800
+    "lastLogin": 1792886400
   },
   {
     "name": "serv00",
     "url": "https://panel2.serv00.com/login/?next=/",
     "intervalDays": 15,
-    "lastLogin": 1791590400
+    "lastLogin": 1792886400
   },
   {
     "name": "cpanelfree",
     "url": "https://cpanel.cpanelfree.com/index.php",
     "intervalDays": 15,
-    "lastLogin": 1791590400
+    "lastLogin": 1792886400
   },
   {
     "name": "x10hosting",
     "url": "https://x10hosting.com/login",
     "intervalDays": 15,
-    "lastLogin": 1791590400
+    "lastLogin": 1792886400
   },
   {
     "name": "pidginhost",
@@ -63,7 +63,7 @@
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
-    "lastLogin": 1792281600
+    "lastLogin": 1792886400
   },
   {
     "name": "hostlio",
