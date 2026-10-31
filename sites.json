@@ -3,7 +3,7 @@
     "name": "lunes",
     "url": "https://betadash.lunes.host/login",
     "intervalDays": 7,
-    "lastLogin": 1792800000
+    "lastLogin": 1793404800
   },
   {
     "name": "wispbyte",
@@ -57,7 +57,7 @@
     "name": "aclclouds",
     "url": "https://aclclouds.com/dashboard/projects4",
     "intervalDays": 4,
-    "lastLogin": 1793059200
+    "lastLogin": 1793404800
   },
   {
     "name": "hidencloud",
