@@ -66,6 +66,12 @@
     "lastLogin": 1793491200
   },
   {
+    "name": "orihost",
+    "url": "https://panel.orihost.com/server/3ec7b213",
+    "intervalDays": 7,
+    "lastLogin": 0
+  },
+  {
     "name": "hostlio",
     "url": "https://www.hostlio.fr/dashboard/services/f15ba91c-e548-4904-9377-c8c84838af5b",
     "intervalDays": 29,
