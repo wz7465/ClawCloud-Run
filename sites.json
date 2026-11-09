@@ -21,19 +21,19 @@
     "name": "serv00",
     "url": "https://panel2.serv00.com/login/?next=/",
     "intervalDays": 15,
-    "lastLogin": 1792886400
+    "lastLogin": 1794182400
   },
   {
     "name": "cpanelfree",
     "url": "https://cpanel.cpanelfree.com/index.php",
     "intervalDays": 15,
-    "lastLogin": 1792886400
+    "lastLogin": 1794182400
   },
   {
     "name": "x10hosting",
     "url": "https://x10hosting.com/login",
     "intervalDays": 15,
-    "lastLogin": 1792886400
+    "lastLogin": 1794182400
   },
   {
     "name": "pidginhost",
@@ -81,6 +81,6 @@
     "name": "hostlio",
     "url": "https://www.hostlio.fr/dashboard/services/f15ba91c-e548-4904-9377-c8c84838af5b",
     "intervalDays": 29,
-    "lastLogin": 1791676800
+    "lastLogin": 1794182400
   }
 ]
