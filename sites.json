@@ -15,7 +15,7 @@
     "name": "bot-hosting",
     "url": "https://bot-hosting.net/a/billings",
     "intervalDays": 4,
-    "lastLogin": 1794960000
+    "lastLogin": 1795305600
   },
   {
     "name": "serv00",
@@ -63,7 +63,7 @@
     "name": "hidencloud",
     "url": "https://dash.hidencloud.com/service/220150/manage",
     "intervalDays": 7,
-    "lastLogin": 1794700800
+    "lastLogin": 1795305600
   },
   {
     "name": "orihost",
@@ -75,7 +75,7 @@
     "name": "hidenfree",
     "url": "https://www.hidenfree.com/server/8l6H5yId/settings",
     "intervalDays": 4,
-    "lastLogin": 0
+    "lastLogin": 1795305600
   },
   {
     "name": "hostlio",
